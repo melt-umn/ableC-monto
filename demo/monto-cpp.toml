@@ -1,0 +1,6 @@
+[net]
+addr = "127.0.0.1:10001"
+
+[version]
+id = "edu.umn.cs.melt.monto_cpp"
+name = "monto-cpp"

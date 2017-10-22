@@ -1,0 +1,12 @@
+*~
+.*
+!.gitignore
+
+*.i
+*.jar
+
+build.xml
+Parser_edu_umn_cs_melt_ableC_monto_demo_extendedParser.copperdump.html
+demo/monto-broker
+demo/monto-cpp
+demo/monto-loctrans
