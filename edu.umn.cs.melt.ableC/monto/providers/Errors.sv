@@ -47,13 +47,13 @@ function extractParseErrors
 {
   return if !result.parseSuccess then
     case result.parseError of
-    | syntaxError(s, l, _, _) -> if l.filename == path then
+    | syntaxError(_, l, e, g) -> if l.filename == path then
         [jsonObject(
           [ pair("start_col", jsonInteger(l.column))
           , pair("start_line", jsonInteger(l.line))
           , pair("end_col", jsonInteger(l.endColumn))
           , pair("end_line", jsonInteger(l.endLine))
-          , pair("message", jsonString(s))
+          , pair("message", jsonString(syntaxErrorMessage(e, g)))
           , pair("severity", severityError().json)
           ])]
       else

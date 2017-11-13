@@ -9,10 +9,10 @@ grammar edu:umn:cs:melt:ableC:drivers:monto;
 import edu:umn:cs:melt:ableC:concretesyntax as cst;
 import edu:umn:cs:melt:ableC:monto:providers;
 import silver:json;
-import silver:support:monto; 
-import silver:support:monto:negotiation; 
-import silver:support:monto:products; 
-import silver:support:monto:utils; 
+import silver:support:monto;
+import silver:support:monto:negotiation;
+import silver:support:monto:products;
+import silver:support:monto:utils;
 
 function driver
 IOVal<Integer> ::= args::[String] ioIn::IO parse::(ParseResult<cst:Root> ::= String String)
@@ -32,13 +32,10 @@ IOVal<Integer> ::= args::[String] ioIn::IO parse::(ParseResult<cst:Root> ::= Str
       nothing(),
       nothing(),
       nothing());
-  local providers :: [ServiceProvider] = [ mkHighlightingProvider(parse, colorize) ];
-  {-
   local providers :: [ServiceProvider] =
     [ mkErrorProvider(parse)
     , mkHighlightingProvider(parse, colorize)
     ];
-  -}
 
   local svc :: Service = simpleService(version, providers);
   return ioval(runService(svc, port, ioIn), 0);
