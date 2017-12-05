@@ -16,12 +16,12 @@ monto3-broker:
 	cp $(MONTO_RS_DIR)/target/release/monto3-broker .
 
 monto3-cpp:
-	cd $(MONTO_CPP_DIR) && cargo build --release --all
-	cp $(MONTO_CPP_DIR)/target/release/monto3-cpp .
+	cd $(MONTO_RS_DIR) && cargo build --release --all
+	cp $(MONTO_CRSDIR)/target/release/monto3-cpp .
 
 monto3-loctrans:
-	cd $(MONTO_LOCTRANS_DIR) && cargo build --release --all
-	cp $(MONTO_LOCTRANS_DIR)/target/release/monto3-loctrans .
+	cd $(MONTO_RS_DIR) && cargo build --release --all
+	cp $(MONTO_RS_DIR)/target/release/monto3-loctrans .
 
 ableC-monto.jar:
 	silver --one-jar -o $@ \
