@@ -7,6 +7,6 @@
 
 build.xml
 Parser_edu_umn_cs_melt_ableC_monto_demo_extendedParser.copperdump.html
-demo/monto-broker
-demo/monto-cpp
-demo/monto-loctrans
+demo/monto3-broker
+demo/monto3-cpp
+demo/monto3-loctrans
