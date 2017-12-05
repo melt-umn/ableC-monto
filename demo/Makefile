@@ -1,4 +1,4 @@
-MONTO_RS_DIR := ~/Projects/melt/monto-rs
+MONTO_RS_DIR ?= ~/Projects/melt/monto-rs
 
 all: monto3-broker ableC-monto.jar monto3-cpp monto3-loctrans
 clean:
