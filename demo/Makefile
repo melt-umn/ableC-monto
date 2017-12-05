@@ -1,27 +1,27 @@
 MONTO_RS_DIR := ~/Projects/melt/monto-rs
-MONTO_CPP_DIR := ~/Projects/melt/monto-cpp
-MONTO_LOCTRANS_DIR := ~/Projects/melt/monto-loctrans
 
-all: monto-broker ableC-monto.jar monto-cpp monto-loctrans
-run: monto-broker ableC-monto.jar monto-cpp monto-loctrans
-	tmux new-session -d -n broker -s monto-demo "sleep 3 && ./monto-broker"
-	tmux new-window -n ableC -t monto-demo:1 "java -jar ableC-monto.jar 10000"
-	tmux new-window -n cpp -t monto-demo:2 "./monto-cpp"
-	tmux new-window -n loctrans -t monto-demo:3 "./monto-loctrans"
-	tmux attach -t monto-demo:0
+all: monto3-broker ableC-monto.jar monto3-cpp monto3-loctrans
+clean:
+	rm -f monto3-broker ableC-monto.jar monto3-cpp monto3-loctrans
+run: monto3-broker ableC-monto.jar monto3-cpp monto3-loctrans
+	tmux new-session -d -n broker -s monto3-demo "sleep 3 && ./monto3-broker || read"
+	tmux new-window -n ableC -t monto3-demo:1 "java -jar -Xms16M ableC-monto.jar 10000 || read"
+	tmux new-window -n cpp -t monto3-demo:2 "./monto3-cpp || read"
+	tmux new-window -n loctrans -t monto3-demo:3 "./monto3-loctrans || read"
+	tmux attach -t monto3-demo:0
 .PHONY: all run
 
-monto-broker:
-	cd $(MONTO_RS_DIR) && cargo build --release
-	cp $(MONTO_RS_DIR)/target/release/monto-broker .
+monto3-broker:
+	cd $(MONTO_RS_DIR) && cargo build --release --all
+	cp $(MONTO_RS_DIR)/target/release/monto3-broker .
 
-monto-cpp:
-	cd $(MONTO_CPP_DIR) && cargo build --release
-	cp $(MONTO_CPP_DIR)/target/release/monto-cpp .
+monto3-cpp:
+	cd $(MONTO_CPP_DIR) && cargo build --release --all
+	cp $(MONTO_CPP_DIR)/target/release/monto3-cpp .
 
-monto-loctrans:
-	cd $(MONTO_LOCTRANS_DIR) && cargo build --release
-	cp $(MONTO_LOCTRANS_DIR)/target/release/monto-loctrans .
+monto3-loctrans:
+	cd $(MONTO_LOCTRANS_DIR) && cargo build --release --all
+	cp $(MONTO_LOCTRANS_DIR)/target/release/monto3-loctrans .
 
 ableC-monto.jar:
 	silver --one-jar -o $@ \

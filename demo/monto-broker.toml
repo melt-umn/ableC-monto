@@ -1,11 +1,11 @@
 [net]
-addr = "[::]:28888"
+addr = "127.0.0.1:28888"
 
 [[service]]
-addr = "localhost:10000"
+addr = "127.0.0.1:10000"
 
 [[service]]
-addr = "localhost:10001"
+addr = "127.0.0.1:10001"
 
 [[service]]
-addr = "localhost:10002"
+addr = "127.0.0.1:10002"

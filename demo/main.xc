@@ -1,3 +1,5 @@
+#include <regex.h>
+
 typedef datatype Tree Tree;
 datatype Tree {
 	Fork(Tree*, Tree*, const char*);
@@ -14,10 +16,13 @@ cilk int main(void) {
 
 	spawn count = count_matches(tree);
 	sync;
-	cilk return matches;
+	cilk return count;
 }
 
-cilk int count_matches(Tree *t) {
+cilk int count_matches(Tree *t0) {
+	// Workaround for a bug.
+	Tree *t = t0;
+
 	match(t) {
 		Fork(t1, t2, str) -> {
 			int res_t1, res_t2, res_str;
