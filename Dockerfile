@@ -1,6 +1,6 @@
 FROM rust:latest
 
-RUN apt-get update && apt-get install -y ant default-jdk-headless git make tmux
+RUN apt-get update && apt-get install -y ant default-jdk-headless git locales make tmux
 
 RUN mkdir -p /data
 WORKDIR /data
@@ -34,4 +34,7 @@ WORKDIR /data/ableC-monto/demo
 ENV MONTO_RS_DIR=/data/monto-rs
 ENV SILVER_HOME=/data/silver
 RUN make
+
+RUN locale-gen en_US.UTF-8
+ENV LANG=C.UTF-8
 CMD make run
