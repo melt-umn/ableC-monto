@@ -32,12 +32,12 @@ Pair<Either<[ServiceError] Product> [ServiceNotice]> ::= parse::(ParseResult<cst
 function extractAllErrors
 Product ::= parse::(ParseResult<cst:Root> ::= String String) src::String path::String
 {
-  local result :: ParseResult<cst:Root> = parse(src, path);
+  local result :: ParseResult<cst:Root> = parse(src, "<stdin>");
 
   local errs :: [Json] = if result.parseSuccess then
-    extractSemanticErrors(result.parseTree, path)
+    extractSemanticErrors(result.parseTree, "<stdin>")
   else
-    extractParseErrors(result, path);
+    extractParseErrors(result, "<stdin>");
 
   return product(productValue("edu.umn.cs.melt.ablec.errors", jsonArray(errs)), [], "c", path);
 }
