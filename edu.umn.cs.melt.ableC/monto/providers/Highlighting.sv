@@ -30,10 +30,16 @@ Pair<Either<[ServiceError] Product> [ServiceNotice]> ::= parse::(ParseResult<cst
 function extractHighlightingTokens
 Product ::= parse::(ParseResult<cst:Root> ::= String String) colorize::(Maybe<Color> ::= TerminalDescriptor) src::String path::String
 {
-  local terminals :: [TerminalDescriptor] = parse(src, path).parseTerminals;
-  local toks :: [Json] = catMaybes(map(makeHighlightingToken(_, colorize), terminals));
+  local terminals :: [TerminalDescriptor] = parse(src, "<stdin>").parseTerminals;
+  local toks :: [Json] = catMaybes(map(makeHighlightingToken(_, colorize), filter(tdFromStdin, terminals)));
 
   return product(productValue("edu.umn.cs.melt.ablec.highlighting", jsonArray(toks)), [], "c", path);
+}
+
+function tdFromStdin
+Boolean ::= td::TerminalDescriptor
+{
+  return td.terminalLocation.filename == "<stdin>";
 }
 
 function makeHighlightingToken
