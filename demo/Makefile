@@ -26,7 +26,7 @@ monto3-loctrans:
 ableC-monto.jar:
 	silver --one-jar -o $@ \
 		-I .. \
-		-I ../../ableC \
+		-I ../../ableC/grammars \
 		-I ../../extensions/ableC-algebraic-data-types/grammars \
 		-I ../../extensions/ableC-cilk/grammars \
 		-I ../../extensions/ableC-regex-lib/grammars \

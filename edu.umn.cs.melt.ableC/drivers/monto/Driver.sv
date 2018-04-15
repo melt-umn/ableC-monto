@@ -38,7 +38,8 @@ IOVal<Integer> ::= args::[String] ioIn::IO parse::(ParseResult<cst:Root> ::= Str
     ];
 
   local svc :: Service = simpleService(version, providers);
-  return ioval(runService(svc, port, ioIn), 0);
+  local io2 :: IO = print("Starting...\n", ioIn);
+  return ioval(runService(svc, port, io2), 0);
 }
 
 
